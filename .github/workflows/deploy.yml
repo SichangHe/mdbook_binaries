@@ -17,12 +17,11 @@ jobs:
       run: |
         git config --global user.name "SichangHe"
         git config --global user.email "sichanghe@users.noreply.github.com"
-    - name: Install mdbook
-      run: cargo install mdbook
     - name: Install mdbook-katex
       run: cargo install --git "https://github.com/lzanini/mdbook-katex"
     - name: push
       run: |
+        tree
         git add .
         git commit --allow-empty -m "build $GITHUB_SHA"
         git push -f
