@@ -1,33 +1,33 @@
 name: CI
- on: [push]
+on: [push]
 
- jobs:
-   test:
-     name: Test
-     runs-on: ubuntu-latest
-     steps:
-     - uses: actions/checkout@v2
-       with:
-         repo-token: ${{ secrets.GITHUB_TOKEN }}
-     - uses: actions-rs/toolchain@v1
-       with:
-         toolchain: stable
-     - uses: actions-rs/cargo@v1
-     - name: configure git
-       run: |
-         git config --global user.name "SichangHe"
-         git config --global user.email "sichanghe@users.noreply.github.com"
-     - name: Install mdbook
-       run: | 
-         cargo install mdbook
-         which mdbook
-     - name: Install mdbook-katex
-       run: |
-         cargo install --git "https://github.com/lzanini/mdbook-katex"
-         which mdbook-katex
-     - name: push
-       run: |
-         mv ~/.cargo/bin bin
-         git add bin
-         git commit --allow-empty -m "build $GITHUB_SHA"
-         git push -f
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+    - uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+    - uses: actions-rs/cargo@v1
+    - name: configure git
+      run: |
+        git config --global user.name "SichangHe"
+        git config --global user.email "sichanghe@users.noreply.github.com"
+    - name: Install mdbook
+      run: |
+        cargo install mdbook
+        which mdbook
+    - name: Install mdbook-katex
+      run: |
+        cargo install --git "https://github.com/lzanini/mdbook-katex"
+        which mdbook-katex
+    - name: push
+      run: |
+        mv ~/.cargo/bin bin
+        git add bin
+        git commit --allow-empty -m "build $GITHUB_SHA"
+        git push -f
