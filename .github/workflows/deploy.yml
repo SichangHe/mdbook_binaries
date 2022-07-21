@@ -27,6 +27,7 @@ jobs:
         which mdbook-katex
     - name: push
       run: |
+        rm -rf bin
         mv ~/.cargo/bin bin
         git add bin
         git commit --allow-empty -m "build $GITHUB_SHA"
