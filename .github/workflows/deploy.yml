@@ -30,4 +30,4 @@ jobs:
         mv ~/.cargo/bin bin
         git add bin
         git commit --allow-empty -m "build $GITHUB_SHA"
-        git push -f 
+        git push -f
