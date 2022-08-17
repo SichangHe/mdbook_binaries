@@ -28,7 +28,9 @@ jobs:
     - name: push
       run: |
         rm -rf bin
-        mv ~/.cargo/bin bin
+        mkdir bin
+        mv ~/.cargo/bin/mdbook bin
+        mv ~/.cargo/bin/mdbook-katex bin
         git add bin
         git commit --allow-empty -m "build $GITHUB_SHA"
         git push -f
