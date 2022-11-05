@@ -25,6 +25,10 @@ jobs:
       run: |
         cargo install --git "https://github.com/lzanini/mdbook-katex"
         which mdbook-katex
+    - name: Install mdbook-toc
+      run: |
+        cargo install mdbook-toc
+        which mdbook-toc
     - name: push
       run: |
         rm -rf bin
