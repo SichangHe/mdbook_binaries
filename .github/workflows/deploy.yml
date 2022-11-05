@@ -35,6 +35,7 @@ jobs:
         mkdir bin
         mv ~/.cargo/bin/mdbook bin
         mv ~/.cargo/bin/mdbook-katex bin
+        mv ~/.cargo/bin/mdbook-toc bin
         git add bin
         git commit --allow-empty -m "build $GITHUB_SHA"
         git push -f
