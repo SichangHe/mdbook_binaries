@@ -1,12 +1,15 @@
 name: CI
-on: [push]
+on:
+  push:
+  schedule:
+  - cron: '0 0 * * 1'
 
 jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
     - uses: actions-rs/toolchain@v1
@@ -17,14 +20,15 @@ jobs:
       run: |
         git config --global user.name "SichangHe"
         git config --global user.email "sichanghe@users.noreply.github.com"
+    - uses: swatinem/rust-cache@v2
     - name: Install mdbook
       run: |
         cargo install mdbook
         which mdbook
-    - name: Install mdbook-katex
+    - name: Install mdbook-katex2
       run: |
-        cargo install --git "https://github.com/lzanini/mdbook-katex"
-        which mdbook-katex
+        cargo install mdbook-katex2
+        which mdbook-katex2
     - name: Install mdbook-toc
       run: |
         cargo install mdbook-toc
@@ -34,7 +38,7 @@ jobs:
         rm -rf bin
         mkdir bin
         mv ~/.cargo/bin/mdbook bin
-        mv ~/.cargo/bin/mdbook-katex bin
+        mv ~/.cargo/bin/mdbook-katex2 bin
         mv ~/.cargo/bin/mdbook-toc bin
         git add bin
         git commit --allow-empty -m "build $GITHUB_SHA"
