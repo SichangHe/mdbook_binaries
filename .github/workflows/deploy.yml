@@ -25,10 +25,10 @@ jobs:
       run: |
         cargo install mdbook
         which mdbook
-    - name: Install mdbook-katex2
+    - name: Install mdbook-katex
       run: |
-        cargo install mdbook-katex2
-        which mdbook-katex2
+        cargo install mdbook-katex
+        which mdbook-katex
     - name: Install mdbook-toc
       run: |
         cargo install mdbook-toc
@@ -38,7 +38,7 @@ jobs:
         rm -rf bin
         mkdir bin
         mv ~/.cargo/bin/mdbook bin
-        mv ~/.cargo/bin/mdbook-katex2 bin
+        mv ~/.cargo/bin/mdbook-katex bin
         mv ~/.cargo/bin/mdbook-toc bin
         git add bin
         git commit --allow-empty -m "build $GITHUB_SHA"
