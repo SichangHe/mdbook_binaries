@@ -4,18 +4,20 @@ on:
   schedule:
   - cron: '0 0 * * 1'
 
+permissions:
+  contents: write
+
+concurrency:
+  group: binaries
+  cancel-in-progress: false
+
 jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-      with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-    - uses: actions-rs/toolchain@v1
-      with:
-        toolchain: stable
-    - uses: actions-rs/cargo@v1
+    - uses: actions/checkout@v4
+    - uses: dtolnay/rust-toolchain@stable
     - name: configure git
       run: |
         git config --global user.name "SichangHe"
@@ -37,4 +39,4 @@ jobs:
         mv ~/.cargo/bin/mdbook-katex bin
         git add bin
         git commit --allow-empty -m "build $GITHUB_SHA"
-        git push -f
+        git push
