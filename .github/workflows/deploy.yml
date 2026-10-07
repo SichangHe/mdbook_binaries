@@ -23,23 +23,18 @@ jobs:
     - uses: swatinem/rust-cache@v2
     - name: Install mdbook
       run: |
-        cargo install mdbook
+        cargo install mdbook --version 0.5.4
         which mdbook
     - name: Install mdbook-katex
       run: |
-        cargo install mdbook-katex
+        cargo install --git https://github.com/SichangHe/mdbook-katex.git --rev f623f031d705ec96e5f747b8c3a910ef1a32734b --locked
         which mdbook-katex
-    - name: Install mdbook-toc
-      run: |
-        cargo install mdbook-toc
-        which mdbook-toc
     - name: push
       run: |
         rm -rf bin
         mkdir bin
         mv ~/.cargo/bin/mdbook bin
         mv ~/.cargo/bin/mdbook-katex bin
-        mv ~/.cargo/bin/mdbook-toc bin
         git add bin
         git commit --allow-empty -m "build $GITHUB_SHA"
         git push -f
